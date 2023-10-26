@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:products/cubit/CubitProducts.dart';
@@ -23,7 +25,10 @@ class AddProduct extends StatelessWidget{
               Container(
                   height: 250,
                   width: double.infinity,
-                  child: Image(image: NetworkImage('${cubit.productNew['image']}'))
+                child: Image.file(
+                  File(cubit.productNew['image']),
+                  fit: BoxFit.fill,
+                ),
               ),
               SizedBox(height: 40,),
               Text(

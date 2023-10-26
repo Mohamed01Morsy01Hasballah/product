@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:products/Modules/Register.dart';
+import 'package:products/Modules/New.dart';
 import 'package:products/cubit/CubitProducts.dart';
-import 'package:products/cubit/Product.dart';
 import 'package:products/cubit/StatesProducts.dart';
-
 import 'Modules/Home.dart';
 import 'Network/Remote/DioHelper.dart';
+import 'cubit/Product.dart';
 
-void main(){
+void main()async {
 runApp(MyApp());
 WidgetsFlutterBinding.ensureInitialized();
 
-DioHelper.init();
+await DioHelper.init();
 }
 class MyApp extends StatelessWidget{
   @override
+  // productgit
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context)=>ProductCubit()..GetProduct()..GetGategory(),
+        create: (context)=>ProductCubit(),
      child: BlocConsumer<ProductCubit,ProductStates>(
         listener: (context,state){},
         builder: (context,state){
@@ -36,11 +36,11 @@ class MyApp extends StatelessWidget{
                centerTitle: true
              ),
            ),
-           home: HomeScreen(),
+           home: CourseScreen(),
          );
         },
       )
     );
   }
-
+// https://i.pravatar.cc
 }

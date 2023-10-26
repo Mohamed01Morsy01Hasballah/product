@@ -98,17 +98,28 @@ var formkey=GlobalKey<FormState>();
                       SizedBox(
                         height: 20,
                       ),
-                      BuiltTextField(
-                          type: TextInputType.text,
-                          controller: image,
-                          label: 'image',
-                          validate: (String? value){
-                            if(value!.isEmpty){
-                              return 'Please Enter Url ';
-                            }
-                            return null;
-
-                          }
+                      MaterialButton(
+                        padding: EdgeInsets.all(8),
+                        onPressed: (){
+                          cubit.getImage();
+                        },
+                        color: Colors.black,
+                        child: Text('Get Image',
+                          style: TextStyle(
+                              color: Colors.white
+                          ),),
+                        shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5)
+                        ),
+                      ),
+                      cubit.imageData ==null?
+                      Container(
+                        margin: EdgeInsets.all(1),
+                        height: 15,
+                        child: Text('Please Upload Image'),
+                      ):CircleAvatar(
+                        radius: 40,
+                        backgroundImage: FileImage(cubit.imageData!),
                       ),
                       SizedBox(
                         height: 20,
@@ -134,7 +145,7 @@ var formkey=GlobalKey<FormState>();
                             title: name.text,
                             price: price.text,
                             desc: description.text,
-                            image: image.text,
+                            image: cubit.imageData!.path,
                             category: category.text
                         );
                       }),
